@@ -1,0 +1,36 @@
+﻿<Window x:Class="TenMinutes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TenMinutes"
+        mc:Ignorable="d"
+        Title="{Binding TitleString, UpdateSourceTrigger= PropertyChanged}"
+		Icon="{Binding Icon, UpdateSourceTrigger=PropertyChanged}"
+		Height="450" Width="800" Background="{StaticResource BackgroundStyle}">
+	<Window.DataContext>
+		<local:MainWindowViewModel></local:MainWindowViewModel>
+	</Window.DataContext>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="auto" />
+		</Grid.RowDefinitions>
+		<Label Grid.Row="0" Content="{Binding InfoText, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" FontWeight="Bold" FontSize="25" HorizontalAlignment="Center" Margin="25"/>
+		<Border Grid.Row="1" BorderThickness="2" BorderBrush="Black" Margin="5">	
+			<Label Content="{Binding AdditionalInfoText, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" FontSize="18" HorizontalAlignment="Center" />
+		</Border>
+		<Border Grid.Row="2" BorderThickness="2" BorderBrush="Black" Margin="5">
+			<TextBlock Text="{Binding StuffDone, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" FontSize="12" Height="50" FontWeight="Bold" TextWrapping="Wrap"/>
+		</Border>
+		<StackPanel Grid.Row="3">
+			<Label>Choose your fancy</Label>
+			<CheckBox Content="Code" IsChecked="{Binding DoCode, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+			<CheckBox Content="Roleplay" IsChecked="{Binding DoRpg, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+		</StackPanel>
+		<Button Grid.Row="4" Width="100" Height="30" Content="{Binding ButtonText}" Command="{Binding GetNewTask}"/>
+    </Grid>
+</Window>
